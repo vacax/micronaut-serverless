@@ -1,0 +1,46 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("io.micronaut.application") version "2.0.8"
+}
+
+version = "0.1"
+group = "edu.pucmm.ia"
+
+repositories {
+    mavenCentral()
+}
+
+micronaut {
+    runtime("lambda")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("edu.pucmm.ia.*")
+    }
+}
+
+dependencies {
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("javax.annotation:javax.annotation-api")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    compileOnly("org.graalvm.nativeimage:svm")
+
+    implementation("io.micronaut:micronaut-validation")
+
+    implementation("io.micronaut.aws:micronaut-function-aws-custom-runtime")
+
+}
+
+
+application {
+    mainClass.set("io.micronaut.function.aws.runtime.MicronautLambdaRuntime")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
+}
+
+
+

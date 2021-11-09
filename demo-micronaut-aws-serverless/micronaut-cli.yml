@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: edu.pucmm.ia
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, aws-lambda, aws-lambda-custom-runtime, graalvm, gradle, http-client, java, junit, logback, readme, shade, yaml]
